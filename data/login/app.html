@@ -1,0 +1,63 @@
+<div class="login-layout light-login">
+	<div class="main-container">
+		<div class="main-content">
+			<div class="row">
+				<div class="col-sm-10 col-sm-offset-1">
+					<div class="login-container">
+						<div class="center">
+							<h2>
+								<i class="fa fa-desktop"></i>
+							</h2>
+							<h2 class="blue" id="id-company-text">
+								<span class="red">VADOW</span>
+								<span class="blue" id="id-text2">Sistemas Integrales</span>
+							</h2>
+						</div>
+						<div class="space-6"></div>
+						<div class="position-relative">
+							<div id="login-box" class="login-box visible widget-box no-border">
+								<div class="widget-body">
+									<div class="widget-main">
+										<h4 class="header blue lighter bigger">
+											<!-- <i class="ace-icon fa fa-coffee green"></i> -->
+											Por favor ingrese su información
+										</h4>
+										<div class="space-6"></div>
+										<form id="form_proceso" name="form_proceso">
+											<fieldset>
+												<label class="form-group block clearfix">
+													<span class="block input-icon input-icon-right">
+														<input type="text" class="form-control" placeholder="Usuario" ng-model="userInfo.usuario"  />
+														<i class="ace-icon fa fa-user"></i>
+													</span>
+												</label>
+												<label class="form-group block clearfix">
+													<span class="block input-icon input-icon-right">
+														<input type="password" class="form-control" placeholder="Password" ng-model="userInfo.password"  />
+														<i class="ace-icon fa fa-lock"></i>
+													</span>
+												</label>
+												<div class="space"></div>
+												<div class="clearfix">
+													<label class="inline">														
+													</label>     
+													<button type="button" class="width-35 pull-right btn btn-sm btn-primary" ng-click="loginUser()">
+														<i class="ace-icon fa fa-key"></i>
+														<span class="bigger-110">Ingresar</span>
+													</button>
+												</div>
+												<div class="space-4"></div>
+											</fieldset>
+										</form>
+									</div>
+								</div>	
+							</div>
+							<div class="navbar-fixed-top align-right">								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>		
+</div>
