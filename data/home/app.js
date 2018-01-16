@@ -2,9 +2,11 @@ app.controller("mainController", function ($scope, $state, $http, Authentication
 	var token;
 	if (localStorage['token']){
     	token = JSON.parse(localStorage['token']);
+
 	} else {
 		token = "No Autorizado";
 	}
+    
 	AuthenticationService.checkToken(token);
     cargarMenuService.cargaMenu($state.current.name, token.data);
    	$scope.logout = function(){
@@ -27,4 +29,9 @@ app.controller("mainController", function ($scope, $state, $http, Authentication
     $scope.cambioMenu = function (page){        
        $state.go(page);
     }   
+    $scope.mySplit = function(nb) {        
+        temp = token.data;
+        var array = temp.split('|');        
+        return array[nb];
+    }
 });

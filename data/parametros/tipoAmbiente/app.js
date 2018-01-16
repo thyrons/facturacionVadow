@@ -28,6 +28,11 @@ app.controller("tipoAmbienteController", function ($scope, $state, $http, Authen
        $state.go(page);
     }
 
+    $scope.mySplit = function(nb) {        
+        temp = token.data;
+        var array = temp.split('|');        
+        return array[nb];
+    }
 
     jQuery(function($) {            
         $( "#tabTipoProducto" ).click(function( event ) {

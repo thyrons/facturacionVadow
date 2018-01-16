@@ -1,3 +1,4 @@
+<div class="loading2" id="loading2">&#8230;</div>
 <div class="login-layout light-login">
 	<div class="main-container">
 		<div class="main-content">
@@ -22,26 +23,26 @@
 											<!-- <i class="ace-icon fa fa-coffee green"></i> -->
 											Por favor ingrese su información
 										</h4>
-										<div class="space-6"></div>
-										<form id="form_proceso" name="form_proceso">
+										<div class="space-6"></div>										
+										<form class="form-horizontal" role="form" name="form_login" ng-submit="submitForm(form_login.$valid)" novalidate>
 											<fieldset>
 												<label class="form-group block clearfix">
 													<span class="block input-icon input-icon-right">
-														<input type="text" class="form-control" placeholder="Usuario" ng-model="userInfo.usuario"  />
+														<input type="text" class="form-control" placeholder="Usuario" ng-model="userInfo.usuario" required="" />
 														<i class="ace-icon fa fa-user"></i>
 													</span>
 												</label>
 												<label class="form-group block clearfix">
 													<span class="block input-icon input-icon-right">
-														<input type="password" class="form-control" placeholder="Password" ng-model="userInfo.password"  />
+														<input type="password" class="form-control" placeholder="Password" ng-model="userInfo.password" required="" />
 														<i class="ace-icon fa fa-lock"></i>
 													</span>
 												</label>
 												<div class="space"></div>
 												<div class="clearfix">
 													<label class="inline">														
-													</label>     
-													<button type="button" class="width-35 pull-right btn btn-sm btn-primary" ng-click="loginUser()">
+													</label>   													
+													<button type="submit" class="width-35 pull-right btn btn-sm btn-primary" name="btn_1" ng-disabled="form_login.$invalid">
 														<i class="ace-icon fa fa-key"></i>
 														<span class="bigger-110">Ingresar</span>
 													</button>

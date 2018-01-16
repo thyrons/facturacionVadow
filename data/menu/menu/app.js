@@ -28,6 +28,12 @@ app.controller("menuController", function ($scope, $state, $http, Authentication
        $state.go(page);
     }
 
+     $scope.mySplit = function(nb) {        
+        temp = token.data;
+        var array = temp.split('|');        
+        return array[nb];
+    }
+    
     jQuery(function($) {                
         $( "#tabMenu" ).click(function( event ) {
             event.preventDefault();  

@@ -14,7 +14,6 @@
 		$sql = "UPDATE usuarios SET token = '".$token."' WHERE usuario = '".$username."' AND pass = '".$password."'";
 		if($class->consulta($sql)){
 			echo $token;
-			//echo json_encode($token);			
 		}else{
 			echo "ERROR";
 		}

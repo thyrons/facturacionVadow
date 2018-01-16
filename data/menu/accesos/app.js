@@ -28,6 +28,11 @@ app.controller("accesosController", function ($scope, $state, $http, Authenticat
        $state.go(page);
     }
 
+     $scope.mySplit = function(nb) {        
+        temp = token.data;
+        var array = temp.split('|');        
+        return array[nb];
+    }
     jQuery(function($) {
         $("#loading2").css("display","none");       
         $('[data-toggle="tooltip"]').tooltip();             
