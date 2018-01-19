@@ -1,4 +1,4 @@
-var app = angular.module("vadowApp", ["ui.router"]);
+var app = angular.module("vadowApp", ["ui.router","localytics.directives"]);
 
 app.config(function($stateProvider, $urlRouterProvider){
     $urlRouterProvider.otherwise('/');
@@ -63,6 +63,11 @@ app.config(function($stateProvider, $urlRouterProvider){
 	        url:"/tipoEmision",
 	        controller: "tipoEmisionController",
 	        templateUrl: "data/parametros/tipoEmision/app.html"	
+        })
+        .state("usuarios", {			        		  	
+	        url:"/usuarios",
+	        controller: "usuariosController",
+	        templateUrl: "data/parametros/usuarios/app.html"	
         })
         ////menus////
         .state("menu", {			        		  	
