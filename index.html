@@ -47,6 +47,15 @@
         <script type="text/javascript" src="data/home/app.js"></script>     
         <script type="text/javascript" src="data/parametros/tipoAmbiente/app.js"></script>     
         <script type="text/javascript" src="data/parametros/cargos/app.js"></script>     
+        <script type="text/javascript" src="data/parametros/tipoIdentificacion/app.js"></script>     
+        <script type="text/javascript" src="data/parametros/formasPago/app.js"></script>     
+        <script type="text/javascript" src="data/parametros/tipoComprobante/app.js"></script>     
+        <script type="text/javascript" src="data/parametros/tipoImpuesto/app.js"></script>     
+        <script type="text/javascript" src="data/parametros/tarifaImpuesto/app.js"></script>     
+        <script type="text/javascript" src="data/parametros/tipoRetencion/app.js"></script> 
+        <script type="text/javascript" src="data/parametros/tarifaRetencion/app.js"></script>    
+        <script type="text/javascript" src="data/parametros/tipoEmision/app.js"></script>     
+        <script type="text/javascript" src="data/parametros/usuarios/app.js"></script>     
         <script type="text/javascript" src="data/menu/menu/app.js"></script>     
         <script type="text/javascript" src="data/menu/subMenu/app.js"></script>     
         <script type="text/javascript" src="data/menu/accesos/app.js"></script>
@@ -87,7 +96,38 @@
     <script src="dist/js/dataTables.select.min.js"></script>
     <!--[if lte IE 8]>
       <script src="dist/js/excanvas.min.js"></script>
-    <![endif]-->   
+    <![endif]-->
+        <script type="text/javascript">
+            jQuery(function($) {
+                $(document).one('ajaxloadstart.page', function(e) {
+                    $tooltip.remove();
+                });         
+                //Android's default browser somehow is confused when tapping on label which will lead to dragging the task
+                //so disable dragging when clicking on label
+                var agent = navigator.userAgent.toLowerCase();
+                if(ace.vars['touch'] && ace.vars['android']) {
+                  $('#tasks').on('touchstart', function(e){
+                    var li = $(e.target).closest('#tasks li');
+                    if(li.length == 0)return;
+                    var label = li.find('label.inline').get(0);
+                    if(label == e.target || $.contains(label, e.target)) e.stopImmediatePropagation() ;
+                  });
+                }                   
+                /*$( "#nav" ).click(function( event ) {
+                    event.preventDefault();  
+                });*/               
+                $('.dialogs,.comments').ace_scroll({
+                    size: 300
+                });
+                $.extend($.gritter.options, {
+                    class_name: 'gritter-light', // for light notifications (can be added directly to $.gritter.add too)
+                    //position: 'bottom-left', // possibilities: bottom-left, bottom-right, top-left, top-right
+                    fade_in_speed: 100, // how fast notifications fade in (string or int)
+                    fade_out_speed: 100, // how fast the notices fade out
+                    time: 2000 // hang on the screen for...
+                }); 
+            })
+        </script>      
         <style type="text/css">
             .ui-jqdialog-content .form-view-data {
                 white-space: normal !important;

@@ -1,4 +1,4 @@
-var app = angular.module("vadowApp", ["ui.router"]);
+var app = angular.module("vadowApp", ["ui.router","localytics.directives"]);
 
 app.config(function($stateProvider, $urlRouterProvider){
     $urlRouterProvider.otherwise('/');
@@ -12,7 +12,8 @@ app.config(function($stateProvider, $urlRouterProvider){
 	        url:"/home",
 	        controller: "mainController",
 	        templateUrl: "data/home/app.html"	
-        })  
+        }) 
+        ////parametros/// 
         .state("tipoAmbiente", {			        		  	
 	        url:"/tipoAmbiente",
 	        controller: "tipoAmbienteController",
@@ -23,6 +24,52 @@ app.config(function($stateProvider, $urlRouterProvider){
 	        controller: "cargosController",
 	        templateUrl: "data/parametros/cargos/app.html"	
         })
+        .state("tipoIdentificacion", {			        		  	
+	        url:"/tipoIdentificacion",
+	        controller: "tipoIdentificacionController",
+	        templateUrl: "data/parametros/tipoIdentificacion/app.html"	
+        })
+        .state("formasPago", {			        		  	
+	        url:"/formasPago",
+	        controller: "formasPagoController",
+	        templateUrl: "data/parametros/formasPago/app.html"	
+        })
+        .state("tipoComprobante", {			        		  	
+	        url:"/tipoComprobante",
+	        controller: "tipoComprobanteController",
+	        templateUrl: "data/parametros/tipoComprobante/app.html"	
+        })
+        .state("tipoImpuesto", {			        		  	
+	        url:"/tipoImpuesto",
+	        controller: "tipoImpuestoController",
+	        templateUrl: "data/parametros/tipoImpuesto/app.html"	
+        })
+        .state("tarifaImpuesto", {			        		  	
+	        url:"/tarifaImpuesto",
+	        controller: "tarifaImpuestoController",
+	        templateUrl: "data/parametros/tarifaImpuesto/app.html"	
+        })
+        .state("tipoRetencion", {			        		  	
+	        url:"/tipoRetencion",
+	        controller: "tipoRetencionController",
+	        templateUrl: "data/parametros/tipoRetencion/app.html"	
+        })
+        .state("tarifaRetencion", {			        		  	
+	        url:"/tarifaRetencion",
+	        controller: "tarifaRetencionController",
+	        templateUrl: "data/parametros/tarifaRetencion/app.html"	
+        })
+        .state("tipoEmision", {			        		  	
+	        url:"/tipoEmision",
+	        controller: "tipoEmisionController",
+	        templateUrl: "data/parametros/tipoEmision/app.html"	
+        })
+        .state("usuarios", {			        		  	
+	        url:"/usuarios",
+	        controller: "usuariosController",
+	        templateUrl: "data/parametros/usuarios/app.html"	
+        })
+        ////menus////
         .state("menu", {			        		  	
 	        url:"/menu",
 	        controller: "menuController",
