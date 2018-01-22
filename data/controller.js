@@ -108,7 +108,17 @@ app.service('AuthenticationService', ["$http", "$state", function($http, $state)
         });
 	}
 }]);
-
+app.service('undefinedService',["$http",function(){
+    var self = this;
+    self.undefinedFunction = function(val){  
+        if(val === undefined){
+            return '';
+        }
+        else{
+            return val;
+        }
+    }
+}]);
 app.service('cargarMenuService', ["$http", "$state", function($http, $state){	
 	var self = this;
 	self.cargaMenu = function(page,token){	
@@ -133,3 +143,53 @@ app.service('cargarMenuService', ["$http", "$state", function($http, $state){
     	}
 	}
 }]);
+app.directive("fileinput", [function() {
+    return {
+        scope: {
+            fileinput: "=",
+            filepreview: "="
+        },
+        link: function(scope, element, attributes) {                
+            element.bind("change", function(changeEvent) {                                      
+                scope.fileinput = changeEvent.target.files[0];                                      
+                var reader = new FileReader();                  
+                reader.onload = function(loadEvent) {                       
+                    scope.$apply(function() {                           
+                        scope.filepreview = loadEvent.target.result;
+                    });
+                }                   
+                if(scope.fileinput) {
+                    reader.readAsDataURL(scope.fileinput);
+                }
+            });
+        }
+    }
+}])
+app.directive('chosen', function() {
+    var linker = function(scope, element, attr) {
+        scope.$watch(attr.ngModel, function() {             
+            element.trigger('chosen:updated');
+        }); 
+        element.chosen();           
+    };
+    return {
+        restrict: 'A',
+        link: linker
+    };
+})
+app.directive('compareTo', function() {
+    return {
+        require: "ngModel",
+        scope:{
+            otherModelValue : "=compareTo"
+        },
+        link: function(scope, element, attributes, ngModel) {
+            ngModel.$validators.compareTo = function(modelValue) {
+                return modelValue == scope.otherModelValue;
+            };
+            scope.$watch("otherModelValue", function() {
+                ngModel.$validate();
+            });
+        }
+    };
+})  

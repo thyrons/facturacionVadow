@@ -5,7 +5,7 @@
 	$data = json_decode(file_get_contents("php://input"));
     $password = sha1($data->password);
     $username = $data->usuario;
-	$sql = $class->consulta("SELECT email FROM usuarios where usuario = '".$username."' and pass = '".$password."'");
+	$sql = $class->consulta("SELECT id FROM usuarios where usuario = '".$username."' and pass = '".$password."'");
 	$token = 0;
 
 
