@@ -69,6 +69,11 @@ app.config(function($stateProvider, $urlRouterProvider){
 	        controller: "usuariosController",
 	        templateUrl: "data/parametros/usuarios/app.html"	
         })
+        .state("empresa", {                                
+            url:"/empresa",
+            controller: "empresaController",
+            templateUrl: "data/parametros/empresa/app.html"    
+        })
         ////menus////
         .state("menu", {			        		  	
 	        url:"/menu",
@@ -143,6 +148,17 @@ app.service('cargarMenuService', ["$http", "$state", function($http, $state){
     	}
 	}
 }]);
+app.directive('ngFiles', ['$parse', function ($parse) {
+    function fn_link(scope, element, attrs) {
+        var onChange = $parse(attrs.ngFiles);
+        element.on('change', function (event) {
+            onChange(scope, { $files: event.target.files });
+        });
+    };
+    return {
+     link: fn_link
+    }
+}])
 app.directive("fileinput", [function() {
     return {
         scope: {
@@ -165,7 +181,7 @@ app.directive("fileinput", [function() {
         }
     }
 }])
-app.directive('chosen', function() {
+app.directive('chosen', function() {    
     var linker = function(scope, element, attr) {
         scope.$watch(attr.ngModel, function() {             
             element.trigger('chosen:updated');
@@ -192,4 +208,92 @@ app.directive('compareTo', function() {
             });
         }
     };
-})  
+}) 
+app.service('cargarProvinciasService',["$http",function($http){
+    var self = this;
+    var data = [];
+    self.cargaProvincias = function(){  
+        $http({
+            url: 'data/parametros/usuarios/app.php',
+            method: "POST",
+            data: "tipo=" + "cargarProvincias",
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+        .then(function(response) {                      
+            for(var i = 0; i < response.data.length; i++ ){
+                temp = {
+                    title : response.data[i].nombre,
+                    id : response.data[i].id,                       
+                }                                           
+                data.push(temp);
+            }                   
+        });      
+        return data;
+    }
+}])
+app.service('cargarCiudadesService',["$http",function($http){
+    var self = this;   
+    self.cargaCiudades = function(id){
+        var data = [];
+        $http({
+            url: 'data/parametros/usuarios/app.php',
+            method: "POST",
+            data: "tipo=" + "cargarCiudades&id="+id,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })       
+        .then(function(response) { 
+            for(var i = 0; i < response.data.length; i++ ){
+                temp = {
+                    title : response.data[i].nombre,
+                    id : response.data[i].id,
+                }
+                data.push(temp);
+            } 
+        });      
+        return data;
+    }
+}])
+app.service('cargarCargosService',["$http",function($http){
+    var self = this;
+    var data = [];
+    self.cargaCargos = function(){  
+        $http({
+            url: 'data/parametros/usuarios/app.php',
+            method: "POST",
+            data: "tipo=" + "cargarCargos",
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+        .then(function(response) {                      
+            for(var i = 0; i < response.data.length; i++ ){
+                temp = {
+                    title : response.data[i].nombre,
+                    id : response.data[i].id,                       
+                }                                           
+                data.push(temp);
+            }                   
+        });      
+        return data;
+    }
+}]) 
+app.service('cargarIdentificacionService',["$http",function($http){
+    var self = this;
+    var data = [];
+    self.cargaIdentificacion = function(){  
+        $http({
+            url: 'data/parametros/usuarios/app.php',
+            method: "POST",
+            data: "tipo=" + "cargarTipoIdentificacion",
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+        .then(function(response) {                      
+            for(var i = 0; i < response.data.length; i++ ){
+                temp = {
+                    title : response.data[i].nombre,
+                    id : response.data[i].id,                       
+                }                                           
+                data.push(temp);
+            }                   
+        });      
+        return data;
+    }
+}]) 

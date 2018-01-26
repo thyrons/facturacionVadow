@@ -1,0 +1,277 @@
+<div class="loading2" id="loading2">&#8230;</div>
+<div id="navbar" class="navbar navbar-default ace-save-state">
+    <div class="navbar-container ace-save-state" id="navbar-container">
+        <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+            <span class="sr-only">Toggle sidebar</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-header pull-left">
+            <a href="" class="navbar-brand">
+                <small>                         
+                    Vadow Admin
+                </small>
+            </a>
+        </div>
+        <div class="navbar-buttons navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav" id="nav">
+                <li class="light-blue dropdown-modal">
+                    <a data-toggle="dropdown" href="" class="dropdown-toggle" id="nav">
+                        <!--<img class="nav-user-photo" src=<?php  //print_r('data/parametros/usuarios/'. $_SESSION['userVadow']['imagen']); ?> alt="" />-->
+                        <span class="user-info">
+                            <small>Bienvenido(a),</small>
+                            {{mySplit(0)}}
+                        </span>
+                        <i class="ace-icon fa fa-caret-down"></i>
+                    </a>
+                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li>
+                            <a href="#">
+                                <i class="ace-icon fa fa-cog"></i>
+                                Configuraciones
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" id="perfil">
+                                <i class="ace-icon fa fa-user"></i>
+                                Perfil
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="" ng-click = "logout()">
+                                <i class="ace-icon fa fa-power-off"></i>
+                                Salir
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div><!-- /.navbar-container -->
+</div>
+<div class="main-container ace-save-state" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.loadState('main-container')}catch(e){}
+    </script>
+
+    <div id="sidebar" class="sidebar responsive ace-save-state">
+        <script type="text/javascript">
+            try{ace.settings.loadState('sidebar')}catch(e){}
+        </script>
+        <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+            <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                <button class="btn btn-success">
+                    <i class="ace-icon fa fa-signal"></i>
+                </button>
+                <button class="btn btn-info">
+                    <i class="ace-icon fa fa-pencil"></i>
+                </button>
+                <button class="btn btn-warning">
+                    <i class="ace-icon fa fa-users"></i>
+                </button>
+                <button class="btn btn-danger">
+                    <i class="ace-icon fa fa-cogs"></i>
+                </button>
+            </div>
+            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                <span class="btn btn-success"></span>
+                <span class="btn btn-info"></span>
+                <span class="btn btn-warning"></span>
+                <span class="btn btn-danger"></span>
+            </div>
+        </div><!-- /.sidebar-shortcuts -->
+        <!--MENU-->
+         <ul id="menu" class="nav nav-list">    
+        </ul><!-- /.nav-list -->
+        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+        </div>
+    </div>
+    <!--container principal-->
+    <div class="main-content">
+    	<div class="main-content-inner">
+			<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+				<ul class="breadcrumb">
+					<li>
+						<i class="ace-icon fa fa-home home-icon"></i>
+						<a href="#!/">Inicio</a>
+					</li>
+					<li class="active">Parametros</li>
+					<li class="active">Empresa</li>
+				</ul>
+			</div>
+
+			<div class="page-content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<i class="fa fa-edit"></i> Perfil de la Empresa
+							</div>
+						    <div class="panel-body">
+						    	<div class="col-md-3">
+							    	<div class="widget-box">
+										<div class="widget-body">
+											<div class="widget-main">
+												<img name="image" class=" img-responsive" alt="Imagén de la Empresa" ng-src="{{filepreview}}" ng-show="filepreview"  style="min-height: 50px;" />
+											</div>
+										</div>
+									</div>	
+						    	</div>
+						    	<div class="col-md-9">				    		
+									<div class="tabbable">
+										<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="tabEmpresa">
+											<li class="active">
+												<a data-toggle="tab" href="#detalles">Detalles</a>
+											</li>
+											<li>
+												<a data-toggle="tab" href="#adicionales">Adicionales</a>
+											</li>
+										</ul>
+										<form class="form-horizontal" role="form" enctype="multipart/form-data" name="formEmpresa" ng-submit="submitForm(formEmpresa.$valid)" novalidate>
+											<div class="tab-content">
+												<div id="detalles" class="tab-pane in active">
+													<div class="form-group" ng-class="{ 'has-error' : formEmpresa.txt_3.$invalid && !formEmpresa.txt_3.$pristine }">
+														<label for="txt_3" class="col-sm-3 col-xs-12 control-label bolder">RUC:</label>
+													    <div class="col-sm-8">
+													 	   	<input type="text" class="form-control" name="txt_3" placeholder="RUC" ng-model="empresa.txt_3" required ng-minlength="13" ng-maxlength="13" ng-keypress="soloNumeros($event)" />
+													       	<p style="margin-bottom: -5px;" ng-show="formEmpresa.txt_3.$error.minlength || formEmpresa.txt_3.$error.maxlength " class="help-block">Máximo 13 carácteres</p>
+													    </div>
+													    <button type="button" ng-click="cargadatos('estado')" class="btn btn-primary btn-sm nopadding "><i class="ace-icon fa fa-search"></i></button>
+													</div>
+
+													<div class="form-group" ng-class="{ 'has-error' : formEmpresa.txt_1.$invalid && !formEmpresa.txt_1.$pristine }">
+														<label for="txt_1" class="col-sm-3 col-xs-12 control-label bolder">Nombre Comercial:</label>
+													    <div class="col-sm-9">
+													 	   	<input type="text" class="form-control" name="txt_1" placeholder="Nombre Empresa" ng-model="empresa.txt_1" required> 
+													 	   	<input type="hidden" name="txt_id" ng-model="empresa.txt_id"> 
+													 	   	<input type="hidden" name="txt_verificador" ng-model="empresa.txt_verificador"> 
+													 	   	<p style="margin-bottom: -5px;" ng-show="formEmpresa.txt_1.$invalid && !formEmpresa.txt_1.$pristine" class="help-block">Este campo es Obligatorio.</p>
+													    </div>
+													</div>
+
+													<div class="form-group">
+														<label for="txt_2" class="col-sm-3 col-xs-12 control-label bolder">Razón Social:</label>
+													    <div class="col-sm-9">
+													 		<input type="text" class="form-control" name="txt_2" ng-model="empresa.txt_2" placeholder="Razón Social">											    
+													    </div>
+													</div>
+
+													<div class="form-group" ng-class="{ 'has-error' : formEmpresa.txt_4.$invalid && !formEmpresa.txt_4.$pristine }">
+														<label for="txt_4" class="col-sm-3 col-xs-12 control-label bolder">Dirección:</label>
+													    <div class="col-sm-9">
+													 	   	<input type="text" class="form-control" name="txt_4" placeholder="Dirección" ng-model="empresa.txt_4" required>
+													 	   	<p style="margin-bottom: -5px;" ng-show="formEmpresa.txt_4.$invalid && !formEmpresa.txt_4.$pristine" class="help-block">Este campo es Obligatorio.</p>
+													    </div>
+													</div>
+
+													<div class="form-group" ng-class="{ 'has-error' : formEmpresa.txt_5.$invalid && !formEmpresa.txt_5.$pristine }">
+														<label for="txt_5" class="col-sm-3 col-xs-12 control-label bolder">Correo Electrónico:</label>
+													    <div class="col-sm-9">
+													    	<div class="clearfix">
+																<span class="block input-icon">
+													 	   			<input type="email" class="form-control" name="txt_5" placeholder="example@gmail.com" ng-model="empresa.txt_5" required>
+													 	   			<p style="margin-bottom: -5px;" ng-show="formEmpresa.txt_5.$invalid && !formEmpresa.txt_5.$pristine" class="help-block">Ingrese un correo válido.</p>
+													 	   			<i class="ace-icon fa fa-envelope"></i>
+													 	   		</span>
+													 	   	</div>	
+													    </div>
+													</div>
+
+													<div class="form-group">
+														<label for="select_obligacion" class="col-sm-3 col-xs-12 control-label bolder">Obligado:</label>
+													    <div class="col-sm-9">
+															<select id="select_obligacion" name="select_obligacion" tabindex="8" class="chosen-select form-control" data-placeholder="Seleccione...">	
+																<option value="SI"> A llevar Contabilidad: SI</option>
+																<option value="NO"> A llevar Contabilidad: NO</option>
+															</select>												 	   
+													    </div>
+													</div>
+
+													<div class="form-group">
+														<label for="" class="col-sm-3 col-xs-12 control-label bolder"></label>
+													    <div class="col-sm-9">
+															<button type="submit" id="btn_1" name="btn_1" class="btn btn-sm btn-primary" ng-disabled="formEmpresa.$invalid"><i class="ace-icon fa fa-save"></i>									
+																{{buttonText}}														
+															</button>
+													    </div>
+													</div>							
+												</div>
+
+												<div id="adicionales" class="tab-pane">
+													<div class="form-group">
+														<label for="txt_6" class="col-sm-3 col-xs-12 control-label bolder">Nro. Contribuyente:</label>
+													    <div class="col-sm-9">
+													 	   	<input type="text" class="form-control" name="txt_6" ng-model="empresa.txt_6" />
+													    </div>											    
+													</div>
+
+													<div class="form-group">
+														<label for="txt_7" class="col-sm-3 col-xs-12 control-label bolder">Nro. Autorizacíón:</label>
+													    <div class="col-sm-9">
+													 	   	<input type="text" class="form-control" name="txt_7" ng-model="empresa.txt_7" />
+													    </div>											    
+													</div>
+
+													<div class="form-group">
+														<label for="file_1" class="col-sm-3 col-xs-12 control-label bolder">Token:</label>
+													    <div class="col-sm-9">
+													 	   	<input type="file" class="form-control" id="file_1" name="file_1" ng-model="empresa.file_1" ng-files="getFiles($files, 'file_1')"> 
+													    </div>											    
+													</div>
+
+													<div class="form-group">
+														<label for="txt_8" class="col-sm-3 col-xs-12 control-label bolder">Clave Token:</label>
+													    <div class="col-sm-9">
+													 	   	<input type="text" class="form-control" name="txt_8" ng-model="empresa.txt_8">
+													    </div>											    
+													</div>
+
+													<div class="form-group">
+														<label for="file_2" class="col-sm-3 col-xs-12 control-label bolder">Logo:</label>
+													    <div class="col-sm-9">
+													 	   	<input type="file" class="form-control" id="file_2" name="file_2" fileinput="file" filepreview="filepreview" ng-model="empresa.file_2" ng-files="getFiles($files, 'file_2')">			    
+													    </div>
+													</div>
+
+													<div class="form-group">
+														<label for="" class="col-sm-3 col-xs-12 control-label bolder"></label>
+													    <div class="col-sm-9">
+															<button type="submit" id="btn_1" name="btn_1" class="btn btn-sm btn-primary" ng-disabled="formEmpresa.$invalid"><i class="ace-icon fa fa-save"></i>
+																{{buttonText}}														
+															</button>										 	   
+													    </div>
+													</div>	
+												</div>
+											</div>
+										</form>
+									</div>
+						    	</div>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>            
+    </div><!-- /.main-content -->
+    <div class="footer">
+        <div class="footer-inner">
+            <div class="footer-content">
+                <span class="bigger-120">
+                    <span class="blue bolder">Vadow &copy; 2017-2018
+                </span>
+                &nbsp; &nbsp;
+                <span class="bigger-120">
+                    <span class="bolder">
+                    Version 1.0
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->

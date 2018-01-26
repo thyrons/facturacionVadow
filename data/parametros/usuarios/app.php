@@ -40,29 +40,46 @@
 			}		
 		}								
 	}
-	if ($_POST['tipo'] == "Modificar Datos") {			
+	if ($_POST['tipo'] == "Modificar Datos") {
+		$verificador = 0;			
 		$resp = "SELECT id FROM usuarios WHERE usuario = '".$_POST['usuario']."' AND NOT id = '".$_POST['id']."'";
 		$resp = $class->consulta($resp);	
 		if($class->num_rows($resp) > 0) {		
 			echo 3; // USUARIO REPETIDO		
 		} else {
-
-			if(isset($_FILES['file_1'])) {
-				$temporal = $_FILES['file_1']['tmp_name'];
-	            $extension = explode(".",  $_FILES['file_1']['name']); 
-	            $extension = end($extension);                    			            
-	            $nombre = $_POST['id'].".".$extension;
-	            $destino = './fotos/'.$nombre;			            
-	            $root = getcwd();	
-	            if(move_uploaded_file($temporal, $root.$destino)) {
-	            	$dirFoto = $destino;
-	            }      	
-			}
-			$resp = "UPDATE usuarios SET id_tipo_identificacion = '".$_POST['tipoIdentificacion']."', identificacion = '".$_POST['identificacion']."', nombres_completos = '".$_POST['nombres']."', apellidos_completos = '".$_POST['apellidos']."', telf_fijo = '".$_POST['fijo']."', telf_movil = '".$_POST['movil']."',direccion = '".$_POST['direccion']."', correo = '".$_POST['correo']."', genero = '".$_POST['genero']."', id_cargo = '".$_POST['cargo']."', usuario = '".$_POST['usuario']."', estado = '".$_POST['estado']."'  WHERE id = '".$_POST['id']."'";				
-			if($class->consulta($resp)) {
-				echo 1;	//Usuario Guardado			
-			} else {
-				echo 4;	//Error en la base
+			$resp = "SELECT id FROM usuarios WHERE identificacion = '".$_POST['identificacion']."' and  id_tipo_identificacion = '".$_POST['tipoIdentificacion']."' AND NOT id = '".$_POST['id']."'";
+			$resp = $class->consulta($resp);	
+			if($class->num_rows($resp) > 0) {		
+				echo 2; // IDENTIFICACION REPETIDO		
+			}else{
+				$sql = "select verificador from usuarios where id = '".$_POST['id']."'";
+				$sql = $class->consulta($sql);		
+				while ($row = $class->fetch_array($sql)) {
+					$verificador = $row[0];
+				}
+				if($verificador == $_POST['verificador']){
+					if(isset($_FILES['file_1'])) {
+						$temporal = $_FILES['file_1']['tmp_name'];
+			            $extension = explode(".",  $_FILES['file_1']['name']); 
+			            $extension = end($extension);                    			            
+			            $nombre = $_POST['id'].".".$extension;
+			            $destino = './fotos/'.$nombre;			            
+			            $root = getcwd();	
+			            if(move_uploaded_file($temporal, $root.$destino)) {
+			            	$dirFoto = $destino;
+			            }      	
+			            $resp = "UPDATE usuarios SET nombres_completos = '".$_POST['nombres_completos']."', apellidos_completos = '".$_POST['apellidos_completos']."', usuario = '".$_POST['usuario']."', email = '".$_POST['correo']."', id_tipo_identificacion = '".$_POST['tipoIdentificacion']."', identificacion = '".$_POST['identificacion']."', telf_fijo = '".$_POST['fijo']."', telf_movil = '".$_POST['movil']."',direccion = '".$_POST['direccion']."', genero = '".$_POST['genero']."', id_cargo = '".$_POST['cargo']."', estado = '".$_POST['estado']."',foto= '".$dirFoto."' ,  id_ciudad = '".$_POST['ciudad']."'  WHERE id = '".$_POST['id']."'";	
+					}else{
+						$resp = "UPDATE usuarios SET nombres_completos = '".$_POST['nombres_completos']."', apellidos_completos = '".$_POST['apellidos_completos']."', usuario = '".$_POST['usuario']."', email = '".$_POST['correo']."', id_tipo_identificacion = '".$_POST['tipoIdentificacion']."', identificacion = '".$_POST['identificacion']."', telf_fijo = '".$_POST['fijo']."', telf_movil = '".$_POST['movil']."',direccion = '".$_POST['direccion']."', genero = '".$_POST['genero']."', id_cargo = '".$_POST['cargo']."', estado = '".$_POST['estado']."', id_ciudad = '".$_POST['ciudad']."'  WHERE id = '".$_POST['id']."'";	
+					}						
+					if($class->consulta($resp)) {
+						echo 1;	//Usuario Guardado			
+					} else {
+						echo 4;	//Error en la base
+					}
+				}else{
+					echo 5; ////ERROR VERIFICADOR
+				}
 			}		
 		}							
 	}
@@ -81,6 +98,41 @@
 				$data = $row[0];
 			}
 		}							
+		echo $data;
+	}
+	if ($_POST['tipo'] == "principio") {
+		$data = 0;								
+		$sql = "select id from usuarios order by id asc limit 1";	
+		$sql = $class->consulta($sql);		
+		while ($row = $class->fetch_array($sql)) {
+			$data = $row[0];
+		}														
+		echo $data;
+	}
+	if ($_POST['tipo'] == "adelante") {
+			$data = 0;
+			if($_POST['id'] == 0){
+				$sql = "select id from usuarios order by id asc limit 1";	
+				$sql = $class->consulta($sql);		
+				while ($row = $class->fetch_array($sql)) {
+					$data = $row[0];
+				}
+			}else{
+				$sql = "select id from usuarios where id >'".$_POST['id']."' order by id asc limit 1";
+				$sql = $class->consulta($sql);		
+				while ($row = $class->fetch_array($sql)) {
+					$data = $row[0];
+				}
+			}							
+			echo $data;
+		}
+	if ($_POST['tipo'] == "final") {
+		$data = 0;								
+		$sql = "select id from usuarios order by id desc limit 1";	
+		$sql = $class->consulta($sql);		
+		while ($row = $class->fetch_array($sql)) {
+			$data = $row[0];
+		}														
 		echo $data;
 	}
 	if ($_POST['tipo'] == "cargarTipoIdentificacion") {				
@@ -135,7 +187,7 @@
 	}
 	if ($_POST['tipo'] == "Cargar Datos") {
 		$data = array();
-		$sql = "select U.id, U.nombres_completos, U.apellidos_completos, U.usuario, U.pass, U.email, U.id_tipo_identificacion, U.identificacion, U.telf_fijo, U.telf_movil, U.direccion, U.genero, U.id_cargo, U.foto, U.tipo, U.estado,U.id_ciudad,C.id_provincia,U.verificador from usuarios U inner join ciudad C on U.id_ciudad = C.id where U.id = '1'";
+		$sql = "select U.id, U.nombres_completos, U.apellidos_completos, U.usuario, U.pass, U.email, U.id_tipo_identificacion, U.identificacion, U.telf_fijo, U.telf_movil, U.direccion, U.genero, U.id_cargo, U.foto, U.tipo, U.estado,U.id_ciudad,C.id_provincia,U.verificador, U.estado::integer from usuarios U inner join ciudad C on U.id_ciudad = C.id where U.id = '".$_POST['id']."'";
 		$sql = $class->consulta($sql);		
 		while ($row = $class->fetch_array($sql)) {
 			$data[] = $row[0];
@@ -157,6 +209,7 @@
 			$data[] = $row[16];
 			$data[] = $row[17];				
 			$data[] = $row[18];		
+			$data[] = $row[19];	
 		}
 		$verificador = numeroVerificador($data[18]);
 		$sql = "update usuarios set verificador = '".$verificador."'";
@@ -164,5 +217,21 @@
 			$data[18] = $verificador;
 			echo json_encode($data);
 		}				
+	}
+	if($_POST['tipo'] == "Busqueda"){
+		$data = array();			
+		$temp = array();
+		$sql = "select id,identificacion,nombres_completos,apellidos_completos from usuarios";
+		$sql = $class->consulta($sql);		
+		while ($row = $class->fetch_array($sql)) {
+			$user = array();
+			$user[] = $row[0];
+			$user[] = $row[1];
+			$user[] = $row[2];
+			$user[] = $row[3];
+			$temp[] = $user;
+		}			
+		$data = array("data"=> $temp);
+		echo json_encode($data);
 	}
 ?>
