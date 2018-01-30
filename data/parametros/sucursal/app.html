@@ -1,0 +1,318 @@
+<div class="loading2" id="loading2">&#8230;</div>
+<div id="navbar" class="navbar navbar-default ace-save-state">
+    <div class="navbar-container ace-save-state" id="navbar-container">
+        <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+            <span class="sr-only">Toggle sidebar</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-header pull-left">
+            <a href="" class="navbar-brand">
+                <small>                         
+                    Vadow Admin
+                </small>
+            </a>
+        </div>
+        <div class="navbar-buttons navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav" id="nav">
+                <li class="light-blue dropdown-modal">
+                    <a data-toggle="dropdown" href="" class="dropdown-toggle" id="nav">
+                        <!--<img class="nav-user-photo" src=<?php  //print_r('data/parametros/usuarios/'. $_SESSION['userVadow']['imagen']); ?> alt="" />-->
+                        <span class="user-info">
+                            <small>Bienvenido(a),</small>
+                            {{mySplit(0)}}
+                        </span>
+                        <i class="ace-icon fa fa-caret-down"></i>
+                    </a>
+                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li>
+                            <a href="#">
+                                <i class="ace-icon fa fa-cog"></i>
+                                Configuraciones
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" id="perfil">
+                                <i class="ace-icon fa fa-user"></i>
+                                Perfil
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="" ng-click = "logout()">
+                                <i class="ace-icon fa fa-power-off"></i>
+                                Salir
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div><!-- /.navbar-container -->
+</div>
+<div class="main-container ace-save-state" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.loadState('main-container')}catch(e){}
+    </script>
+
+    <div id="sidebar" class="sidebar responsive ace-save-state">
+        <script type="text/javascript">
+            try{ace.settings.loadState('sidebar')}catch(e){}
+        </script>
+        <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+            <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                <button class="btn btn-success">
+                    <i class="ace-icon fa fa-signal"></i>
+                </button>
+                <button class="btn btn-info">
+                    <i class="ace-icon fa fa-pencil"></i>
+                </button>
+                <button class="btn btn-warning">
+                    <i class="ace-icon fa fa-users"></i>
+                </button>
+                <button class="btn btn-danger">
+                    <i class="ace-icon fa fa-cogs"></i>
+                </button>
+            </div>
+            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                <span class="btn btn-success"></span>
+                <span class="btn btn-info"></span>
+                <span class="btn btn-warning"></span>
+                <span class="btn btn-danger"></span>
+            </div>
+        </div><!-- /.sidebar-shortcuts -->
+        <!--MENU-->
+         <ul id="menu" class="nav nav-list">    
+        </ul><!-- /.nav-list -->
+        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+        </div>
+    </div>
+    <!--container principal-->
+    <div class="main-content">
+    	<div class="main-content-inner">
+			<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+				<ul class="breadcrumb">
+					<li>
+						<i class="ace-icon fa fa-home home-icon"></i>
+						<a href="#!/">Inicio</a>
+					</li>
+					<li class="active">Parametros</li>
+					<li class="active">Sucursal</li>
+				</ul>
+			</div>
+
+			<div class="page-content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<i class="fa fa-edit"></i> Perfil de la Sucursal
+							</div>
+						    <div class="panel-body">
+						    	<div class="panel-body">				    	
+							    	<div class="col-md-12 col-sm-12 col-xs-12">				    		
+										<div class="tabbable">
+											<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="tabSucursal">
+												<li class="active">
+													<a data-toggle="tab" href="#detalles">Detalles</a>
+												</li>
+												<li>
+													<a data-toggle="tab" href="#adicionales">Adicionales</a>
+												</li>
+											</ul>
+											<form class="form-horizontal" role="form" name="formSucursal" ng-submit="submitForm(formSucursal.$valid)" novalidate>
+												<div class="tab-content">
+													<div id="detalles" class="tab-pane in active">	
+														<div class="form-group">
+	                                                        <label for="selectEmpresa" class="col-sm-3 control-label bolder">Nombre Comercial:</label>
+	                                                        <div class="col-sm-9"> 
+	                                                            <select id="selectEmpresa" name="selectEmpresa" class="chosen-select form-control" data-placeholder="Seleccione..." chosen ng-model="recipients" ng-options = "recipient.id as recipient.title for recipient in recipientsList track by recipient.id" required>
+	                                                                <option></option>
+	                                                            </select>  
+	                                                        </div>
+	                                                    </div>									
+														<div class="form-group" ng-class="{ 'has-error' : formSucursal.txt_2.$invalid && !formSucursal.txt_2.$pristine }">
+															<label for="txt_2" class="col-sm-3 control-label bolder">Dirección:</label>
+														    <div class="col-sm-9">
+														 	   	<input type="text" class="form-control" name="txt_2" placeholder="Dirección " ng-model="Sucursal.txt_2" required>
+														 		<input type="hidden" name="txt_id" ng-model="Sucursal.txt_id"> 
+														 	   	<input type="hidden" name="txt_verificador" ng-model="Sucursal.txt_verificador"> 	
+														 	   	<p style="margin-bottom: -5px;" ng-show="formSucursal.txt_2.$invalid && !formSucursal.txt_2.$pristine" class="help-block">Este campo es Obligatorio.</p>
+														    </div>
+														</div>	
+														<div class="form-group" ng-class="{ 'has-error' : formSucursal.txt_3.$invalid && !formSucursal.txt_3.$pristine }">
+															<label for="txt_3" class="col-sm-3 control-label bolder">Teléfono:</label>
+														    <div class="col-sm-9">
+														 	   <input type="text" class="form-control" name="txt_3" placeholder="Teléfono " ng-model="Sucursal.txt_3" required>
+														 	   <p style="margin-bottom: -5px;" ng-show="formSucursal.txt_3.$invalid && !formSucursal.txt_3.$pristine" class="help-block">Este campo es Obligatorio.</p>
+														    </div>
+														</div>
+														<div class="form-group" ng-class="{ 'has-error' : formSucursal.txt_4.$invalid && !formSucursal.txt_4.$pristine }">
+															<label for="txt_4" class="col-sm-3 control-label bolder">Correo:</label>
+														    <div class="col-sm-9">
+														 	   <input type="email" class="form-control" name="txt_4" placeholder="example@gmail.com " ng-model="Sucursal.txt_4" required>
+														 	   <p style="margin-bottom: -5px;" ng-show="formSucursal.txt_4.$invalid && !formSucursal.txt_4.$pristine" class="help-block">Ingrese un correo válido.</p>
+														    </div>
+														</div>
+														<div class="form-group" ng-class="{ 'has-error' : formSucursal.txt_5.$invalid && !formSucursal.txt_5.$pristine }">
+															<label for="txt_5" class="col-sm-3 control-label bolder">Ciudad:</label>
+														    <div class="col-sm-9">
+														 	   <input type="text" class="form-control" name="txt_5" placeholder="Ciudad " ng-model="Sucursal.txt_5" required>
+														 	   <p style="margin-bottom: -5px;" ng-show="formSucursal.txt_5.$invalid && !formSucursal.txt_5.$pristine" class="help-block">Este campo es Obligatorio.</p>
+														    </div>
+														</div>
+														<div class="form-group" ng-class="{ 'has-error' : formSucursal.txt_6.$invalid && !formSucursal.txt_6.$pristine }">
+															<label for="txt_6" class="col-sm-3 control-label bolder">Representante:</label>
+														    <div class="col-sm-9">
+														 	   <input type="text" class="form-control" name="txt_6" placeholder="Representante " ng-model="Sucursal.txt_6" required>
+														 	   <p style="margin-bottom: -5px;" ng-show="formSucursal.txt_6.$invalid && !formSucursal.txt_6.$pristine" class="help-block">Este campo es Obligatorio.</p>
+														    </div>
+														</div>											
+														<div class="form-group">
+															<div class="col-sm-12 center">
+	                                                            <div class="btn-group">
+	                                                                <button type="button" class="btn btn-md btn-primary" ng-click="principio()" name="btn_3"> << </button>
+	                                                                <button type="button" class="btn btn-md btn-primary" ng-click="atras()" name="btn_4"> < </button>
+	                                                                <button type="submit" class="btn btn-md btn-primary" name="btn_1" ng-disabled="formSucursal.$invalid"> {{buttonText}} </button>
+	                                                                <button type="button" class="btn btn-md btn-primary " name="btn_2" ng-click="ventanaBusqueda()"> Buscar </button>
+	                                                                <button type="button" class="btn btn-md btn-primary" ng-click="adelante()" name="btn_5"> > </button>
+	                                                                <button type="button" class="btn btn-md btn-primary" ng-click="final()" name = "btn_6"> >> </button>
+	                                                            </div>
+	                                                        </div>
+														</div>																																	
+													</div>
+													<div id="adicionales" class="tab-pane">
+														<div class="form-group">
+															<label for="selectEmision" class="col-sm-3 control-label bolder">Punto de Emisión:</label>
+														    <div class="col-sm-9">
+																<select id="selectEmision" name="selectEmision" tabindex="8" class="chosen-select form-control" data-placeholder="Seleccione...">	
+																	<option value="001"> 001</option>
+																	<option value="002"> 002</option>
+																	<option value="003"> 003</option>
+																	<option value="004"> 004</option>
+																	<option value="005"> 005</option>
+																	<option value="006"> 006</option>
+																	<option value="007"> 007</option>
+																	<option value="008"> 008</option>
+																	<option value="009"> 009</option>
+																	<option value="010"> 010</option>
+																</select>												 	   
+														    </div>
+														</div>
+														<div class="form-group">
+															<label for="selectEstablecimiento" class="col-sm-3 control-label bolder">Establecimiento:</label>
+														    <div class="col-sm-9">
+																<select id="selectEstablecimiento" name="selectEstablecimiento" tabindex="8" class="chosen-select form-control" data-placeholder="Seleccione...">	
+																	<option value="001"> 001</option>
+																	<option value="002"> 002</option>
+																	<option value="003"> 003</option>
+																	<option value="004"> 004</option>
+																	<option value="005"> 005</option>
+																	<option value="006"> 006</option>
+																	<option value="007"> 007</option>
+																	<option value="008"> 008</option>
+																	<option value="009"> 009</option>
+																	<option value="010"> 010</option>														
+																</select>												 	   
+														    </div>
+														</div>
+														<div class="form-group" ng-class="{ 'has-error' : formSucursal.txt_7.$invalid && !formSucursal.txt_7.$pristine }">
+															<label for="txt_7" class="col-sm-3 control-label bolder">Es Matriz:</label>
+														    <div class="col-sm-9">
+																<label>
+																	<input name="txt_7" id="txt_7" ng-model="lista" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"  ng-true-value="'SI'" />
+																	<span class="lbl" data-lbl="&nbsp;&nbsp;SI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO"></span>
+																</label> 
+														    </div>
+														</div>
+														<div class="form-group" ng-class="{ 'has-error' : formSucursal.txt_8.$invalid && !formSucursal.txt_8.$pristine }">
+															<label for="txt_8" class="col-sm-3 control-label bolder">Es Lote:</label>
+														    <div class="col-sm-9">
+														 		<label>
+																	<input name="txt_8" id="txt_8" ng-model="lista_2" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox" ng-true-value="'SI'" />
+																	<span class="lbl" data-lbl="&nbsp;&nbsp;SI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO"></span>
+																</label>
+														    </div>
+														</div>
+														<div class="form-group">
+															<div class="col-sm-12 center">
+	                                                            <div class="btn-group">
+	                                                                <button type="button" class="btn btn-md btn-primary" ng-click="principio()" name="btn_3"> << </button>
+	                                                                <button type="button" class="btn btn-md btn-primary" ng-click="atras()" name="btn_4"> < </button>
+	                                                                <button type="submit" class="btn btn-md btn-primary" name="btn_1" ng-disabled="formSucursal.$invalid"> {{buttonText}} </button>
+	                                                                <button type="button" class="btn btn-md btn-primary " name="btn_2" ng-click="ventanaBusqueda()"> Buscar </button>
+	                                                                <button type="button" class="btn btn-md btn-primary" ng-click="adelante()" name="btn_5"> > </button>
+	                                                                <button type="button" class="btn btn-md btn-primary" ng-click="final()" name = "btn_6"> >> </button>
+	                                                            </div>
+                                                        	</div>
+														</div>	
+													</div>
+												</div>
+											</form>
+										</div>
+							    	</div>
+							    </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" id="modal-table" role="dialog" aria-labelledby="myLargeModalLabel" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header no-padding">
+                                <div class="table-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        <span class="white">&times;</span>
+                                    </button>
+                                    Usuarios
+                                </div>
+                            </div>
+
+                            <div class="modal-body no-padding">
+                                <div class="row">
+                                    <div class="col-xs-12"> 
+                                        <div>
+                                            <table id="sucursal-table" class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <td class="hidden">Id</td>
+                                                        <th class="center">Empresa</th>
+                                                        <th class="center">Ciudad</th>
+                                                        <th class="center">Dirección</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>          
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+			</div>
+		</div>            
+    </div><!-- /.main-content -->
+    <div class="footer">
+        <div class="footer-inner">
+            <div class="footer-content">
+                <span class="bigger-120">
+                    <span class="blue bolder">Vadow &copy; 2017-2018
+                </span>
+                &nbsp; &nbsp;
+                <span class="bigger-120">
+                    <span class="bolder">
+                    Version 1.0
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->

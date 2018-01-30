@@ -7,7 +7,8 @@
 	$fecha = $class->fecha_hora();
 
 	if ($_POST['tipo'] == "Guardar Datos") {		
-		$pass = md5($_POST['clave']);								
+		$pass = md5($_POST['clave']);	
+		$id = '';						
 		$resp = "SELECT id FROM usuarios WHERE usuario = '".$_POST['usuario']."'";		
 		$resp = $class->consulta($resp);			
 		if($class->num_rows($resp) > 0) {		
@@ -17,22 +18,28 @@
 			$resp = $class->consulta($resp);
 			if($class->num_rows($resp) > 0) {		
 				echo 3; // IDENTIFICACION REPETIDO	
-			}else{
-				$dirFoto = '';
-				if(isset($_FILES['file_1'])) {
-					$temporal = $_FILES['file_1']['tmp_name'];
-		            $extension = explode(".",  $_FILES['file_1']['name']); 
-		            $extension = end($extension);                    			            
-		            $nombre = $id.".".$extension;
-		            $destino = './fotos/'.$nombre;			            
-		            $root = getcwd();	
-		            if(move_uploaded_file($temporal, $root.$destino)) {
-		            	$dirFoto = $destino;
-		            }      	
-				}
-				$resp = "INSERT INTO usuarios (nombres_completos,apellidos_completos,usuario,pass,email,token,id_tipo_identificacion, identificacion,telf_fijo,telf_movil,direccion,genero,id_cargo,foto,tipo,estado,fecha_creacion,id_ciudad,verificador) VALUES ('".$_POST['nombres_completos']."','".$_POST['apellidos_completos']."','".$_POST['usuario']."','".$pass."','".$_POST['correo']."','','".$_POST['tipoIdentificacion']."','".$_POST['identificacion']."','".$_POST['fijo']."','".$_POST['movil']."','".$_POST['direccion']."','".$_POST['genero']."','".$_POST['cargo']."','".$dirFoto."','0','".$_POST['estado']."','".$fecha."','".$_POST['ciudad']."','".$_POST['verificador']."');";
-				echo $resp;
+			}else{				
+				$resp = "INSERT INTO usuarios (nombres_completos,apellidos_completos,usuario,pass,email,token,id_tipo_identificacion, identificacion,telf_fijo,telf_movil,direccion,genero,id_cargo,foto,tipo,estado,fecha_creacion,id_ciudad,verificador) VALUES ('".$_POST['nombres_completos']."','".$_POST['apellidos_completos']."','".$_POST['usuario']."','".$pass."','".$_POST['correo']."','','".$_POST['tipoIdentificacion']."','".$_POST['identificacion']."','".$_POST['fijo']."','".$_POST['movil']."','".$_POST['direccion']."','".$_POST['genero']."','".$_POST['cargo']."','','0','".$_POST['estado']."','".$fecha."','".$_POST['ciudad']."','0');";
 				if($class->consulta($resp)) {
+					$dirFoto = '';
+					$sql_id = "select id from usuarios where identificacion = '".$_POST['identificacion']."' and id_tipo_identificacion = '".$_POST['tipoIdentificacion']."'";
+					$sql_id = $class->consulta($sql_id);					
+					while ($row_id = $class->fetch_array($sql_id)) {
+						$id = $row_id[0];
+					}
+					if(isset($_FILES['file_1'])) {
+						$temporal = $_FILES['file_1']['tmp_name'];
+			            $extension = explode(".",  $_FILES['file_1']['name']); 
+			            $extension = end($extension);                    			            
+			            $nombre = $id.".".$extension;
+			            $destino = './fotos/'.$nombre;			            
+			            $root = getcwd();	
+			            if(move_uploaded_file($temporal, $root.$destino)) {
+			            	$dirFoto = $destino;
+			            	$sql = "update usuarios set foto = '".$dirFoto."' where id = '".$id."'";
+							$class->consulta($sql);	
+			            }      	
+					}
 					echo 1;	// DATOS GUARDADOS
 				} else {
 					echo 4;	// ERROR EN LA BASE

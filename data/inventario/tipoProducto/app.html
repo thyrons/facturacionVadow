@@ -1,0 +1,164 @@
+<div id="navbar" class="navbar navbar-default ace-save-state">
+    <div class="navbar-container ace-save-state" id="navbar-container">
+        <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+            <span class="sr-only">Toggle sidebar</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-header pull-left">
+            <a href="" class="navbar-brand">
+                <small>                         
+                    Vadow Admin
+                </small>
+            </a>
+        </div>
+        <div class="navbar-buttons navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav" id="nav">
+                <li class="light-blue dropdown-modal">
+                    <a data-toggle="dropdown" href="" class="dropdown-toggle" id="nav">
+                        <!--<img class="nav-user-photo" src=<?php  //print_r('data/parametros/usuarios/'. $_SESSION['userVadow']['imagen']); ?> alt="" />                   -->             
+                        <span class="user-info">
+                            <small>Bienvenido(a),</small>  
+                            {{mySplit(0)}}                                 
+                        </span>
+                        <i class="ace-icon fa fa-caret-down"></i>
+                    </a>
+                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li>
+                            <a href="#">
+                                <i class="ace-icon fa fa-cog"></i>
+                                Configuraciones
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" id="perfil">
+                                <i class="ace-icon fa fa-user"></i>
+                                Perfil
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="" ng-click = "logout()">
+                                <i class="ace-icon fa fa-power-off"></i>
+                                Salir
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div><!-- /.navbar-container -->
+</div>
+<div class="main-container ace-save-state" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.loadState('main-container')}catch(e){}
+    </script>
+
+    <div id="sidebar" class="sidebar responsive ace-save-state">
+        <script type="text/javascript">
+            try{ace.settings.loadState('sidebar')}catch(e){}
+        </script>
+        <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+            <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                <button class="btn btn-success">
+                    <i class="ace-icon fa fa-signal"></i>
+                </button>
+                <button class="btn btn-info">
+                    <i class="ace-icon fa fa-pencil"></i>
+                </button>
+                <button class="btn btn-warning">
+                    <i class="ace-icon fa fa-users"></i>
+                </button>
+                <button class="btn btn-danger">
+                    <i class="ace-icon fa fa-cogs"></i>
+                </button>
+            </div>
+            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                <span class="btn btn-success"></span>
+                <span class="btn btn-info"></span>
+                <span class="btn btn-warning"></span>
+                <span class="btn btn-danger"></span>
+            </div>
+        </div><!-- /.sidebar-shortcuts -->
+        <!--MENU-->
+         <ul id="menu" class="nav nav-list">    
+        </ul><!-- /.nav-list -->
+        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+        </div>
+    </div>
+    <!--container principal-->
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="">Home</a>
+                    </li>
+                    <li>
+                        <a href="">Parámetros</a>
+                    </li>           
+                    <li class="active">Tipo Producto</li>
+                </ul><!-- /.breadcrumb -->
+            </div>
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <i class="fa fa-edit"> </i> Tipo Producto
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="tabbable">
+                                        <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="tabTipoProducto">
+                                            <li class="active">
+                                                <a data-toggle="tab" href="#detalles">Detalles</a>
+                                            </li>
+                                        </ul>
+                                        <form class="form-horizontal" role="form" name="formTipoProducto">
+                                            <div class="tab-content">
+                                                <div id="detalles" class="tab-pane in active">
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="form-group">
+                                                                <div class="col-sm-12 col-xs-12 col-md-12">
+                                                                    <table id="table"></table>
+                                                                    <div id="pager"></div>  
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>             
+    </div><!-- /.main-content -->
+    <div class="footer">
+        <div class="footer-inner">
+            <div class="footer-content">
+                <span class="bigger-120">
+                    <span class="blue bolder">Vadow &copy; 2017-2018
+                </span>
+                &nbsp; &nbsp;
+                <span class="bigger-120">
+                    <span class="bolder">
+                    Version 1.0
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->

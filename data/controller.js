@@ -74,6 +74,16 @@ app.config(function($stateProvider, $urlRouterProvider){
             controller: "empresaController",
             templateUrl: "data/parametros/empresa/app.html"    
         })
+        .state("sucursal", {                                
+            url:"/sucursal",
+            controller: "sucursalController",
+            templateUrl: "data/parametros/sucursal/app.html"    
+        })
+        .state("nroDocumento", {                                
+            url:"/nroDocumento",
+            controller: "nroDocumentoController",
+            templateUrl: "data/parametros/nroDocumento/app.html"    
+        })        
         ////menus////
         .state("menu", {			        		  	
 	        url:"/menu",
@@ -89,7 +99,18 @@ app.config(function($stateProvider, $urlRouterProvider){
 	        url:"/accesos",
 	        controller: "accesosController",
 	        templateUrl: "data/menu/accesos/app.html"	
-        })         
+        }) 
+        ///////////inventario/////
+        .state("tipoProducto", {                                
+            url:"/tipoProducto",
+            controller: "tipoProductoController",
+            templateUrl: "data/inventario/tipoProducto/app.html"    
+        }) 
+        .state("nuevoArticulo", {                                
+            url:"/nuevoArticulo",
+            controller: "nuevoArticuloController",
+            templateUrl: "data/inventario/nuevoArticulo/app.html"    
+        })        
 })
 
 app.service('AuthenticationService', ["$http", "$state", function($http, $state){	
@@ -283,6 +304,86 @@ app.service('cargarIdentificacionService',["$http",function($http){
             url: 'data/parametros/usuarios/app.php',
             method: "POST",
             data: "tipo=" + "cargarTipoIdentificacion",
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+        .then(function(response) {                      
+            for(var i = 0; i < response.data.length; i++ ){
+                temp = {
+                    title : response.data[i].nombre,
+                    id : response.data[i].id,                       
+                }                                           
+                data.push(temp);
+            }                   
+        });      
+        return data;
+    }
+}]) 
+app.service('cargarEmpresaSucursalService',["$http",function($http){
+    var self = this;
+    var data = [];
+    self.cargaEmpresaSucursal = function(){  
+        var data = [];
+        $http({
+            url: 'data/inventario/nuevoArticulo/app.php',
+            method: "POST",
+            data: "tipo=" + "cargarEmpresaSucursal",
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+        .then(function(response) {                      
+            for(var i = 0; i < response.data.length; i++ ){
+                temp = {
+                    title : response.data[i].nombre,
+                    id : response.data[i].id,                       
+                }                                           
+                data.push(temp);
+            }                   
+        });      
+        return data;
+    }
+    self.cargaTipoProducto = function(){  
+        var data = [];
+        $http({
+            url: 'data/inventario/nuevoArticulo/app.php',
+            method: "POST",
+            data: "tipo=" + "cargarTipoProducto",
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+        .then(function(response) {                      
+            for(var i = 0; i < response.data.length; i++ ){
+                temp = {
+                    title : response.data[i].nombre,
+                    id : response.data[i].id,                       
+                }                                           
+                data.push(temp);
+            }                   
+        });      
+        return data;
+    }
+    self.cargaTipoProducto = function(){  
+        var data = [];
+        $http({
+            url: 'data/inventario/nuevoArticulo/app.php',
+            method: "POST",
+            data: "tipo=" + "cargarTipoProducto",
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+        .then(function(response) {                      
+            for(var i = 0; i < response.data.length; i++ ){
+                temp = {
+                    title : response.data[i].nombre,
+                    id : response.data[i].id,                       
+                }                                           
+                data.push(temp);
+            }                   
+        });      
+        return data;
+    }
+    self.cargaIva = function(){  
+        var data = [];
+        $http({
+            url: 'data/inventario/nuevoArticulo/app.php',
+            method: "POST",
+            data: "tipo=" + "cargarIva",
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         })
         .then(function(response) {                      

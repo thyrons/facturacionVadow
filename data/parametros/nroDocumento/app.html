@@ -1,0 +1,303 @@
+<div class="loading2" id="loading2">&#8230;</div>
+<div id="navbar" class="navbar navbar-default ace-save-state">
+    <div class="navbar-container ace-save-state" id="navbar-container">
+        <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+            <span class="sr-only">Toggle sidebar</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-header pull-left">
+            <a href="" class="navbar-brand">
+                <small>                         
+                    Vadow Admin
+                </small>
+            </a>
+        </div>
+        <div class="navbar-buttons navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav" id="nav">
+                <li class="light-blue dropdown-modal">
+                    <a data-toggle="dropdown" href="" class="dropdown-toggle" id="nav">
+                        <!--<img class="nav-user-photo" src=<?php  //print_r('data/parametros/usuarios/'. $_SESSION['userVadow']['imagen']); ?> alt="" />-->
+                        <span class="user-info">
+                            <small>Bienvenido(a),</small>
+                            {{mySplit(0)}}
+                        </span>
+                        <i class="ace-icon fa fa-caret-down"></i>
+                    </a>
+                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li>
+                            <a href="#">
+                                <i class="ace-icon fa fa-cog"></i>
+                                Configuraciones
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" id="perfil">
+                                <i class="ace-icon fa fa-user"></i>
+                                Perfil
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="" ng-click = "logout()">
+                                <i class="ace-icon fa fa-power-off"></i>
+                                Salir
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div><!-- /.navbar-container -->
+</div>
+<div class="main-container ace-save-state" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.loadState('main-container')}catch(e){}
+    </script>
+
+    <div id="sidebar" class="sidebar responsive ace-save-state">
+        <script type="text/javascript">
+            try{ace.settings.loadState('sidebar')}catch(e){}
+        </script>
+        <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+            <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                <button class="btn btn-success">
+                    <i class="ace-icon fa fa-signal"></i>
+                </button>
+                <button class="btn btn-info">
+                    <i class="ace-icon fa fa-pencil"></i>
+                </button>
+                <button class="btn btn-warning">
+                    <i class="ace-icon fa fa-users"></i>
+                </button>
+                <button class="btn btn-danger">
+                    <i class="ace-icon fa fa-cogs"></i>
+                </button>
+            </div>
+            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                <span class="btn btn-success"></span>
+                <span class="btn btn-info"></span>
+                <span class="btn btn-warning"></span>
+                <span class="btn btn-danger"></span>
+            </div>
+        </div><!-- /.sidebar-shortcuts -->
+        <!--MENU-->
+         <ul id="menu" class="nav nav-list">    
+        </ul><!-- /.nav-list -->
+        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+        </div>
+    </div>
+    <!--container principal-->
+    <div class="main-content">
+    	<div class="main-content-inner">
+			<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+				<ul class="breadcrumb">
+					<li>
+						<i class="ace-icon fa fa-home home-icon"></i>
+						<a href="#!/">Inicio</a>
+					</li>
+					<li class="active">Parametros</li>
+					<li class="active">Número de Documento</li>
+				</ul>
+			</div>
+
+			<div class="page-content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<i class="fa fa-edit"></i> Número de Documento
+							</div>
+						    <div class="panel-body">
+						    	<div class="panel-body">				    	
+							    	<div class="col-md-12 col-sm-12 col-xs-12">				    		
+										<div class="tabbable">
+											<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="tabSucursal">
+												<li class="active">
+													<a data-toggle="tab" href="#detalles">Detalles</a>
+												</li>
+											</ul>
+											<form class="form-horizontal" role="form" name="formNroDocumento" ng-submit="submitForm(formNroDocumento.$valid)" novalidate>
+												<div class="tab-content">
+													<div id="detalles" class="tab-pane in active">
+														<div class="row">
+															<div class="col-md-9 col-sm-9 col-xs-9">
+																<div class="form-group" ng-class="{ 'has-error' : formNroDocumento.txt_1.$invalid && !formNroDocumento.txt_1.$pristine }">
+																    <div class="col-sm-12 col-xs-12 col-md-12">
+																		<input type="text" class="form-control" name="txt_1" placeholder="Nombre Comercial" ng-model="nroDocumento.txt_1" ng-disabled="true"  required>	
+																		<input type="hidden" name="txt_id" ng-model="nroDocumento.txt_id"> 
+																 		<input type="hidden" name="txt_verificador" ng-model="nroDocumento.txt_verificador">
+																    </div>
+																</div>
+															</div>
+															<div class="col-md-3 col-sm-3 col-xs-3">
+																<div class="form-group" ng-class="{ 'has-error' : formNroDocumento.txt_12.$invalid && !formNroDocumento.txt_12.$pristine }">
+																    <div class="col-sm-12 col-xs-12 col-md-12">
+																		<input type="text" class="form-control" name="txt_12" placeholder="Ambiente" ng-model="nroDocumento.txt_12" ng-disabled="true"  required>
+																    </div>
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group" ng-class="{ 'has-error' : formNroDocumento.txt_2.$invalid && !formNroDocumento.txt_2.$pristine }">
+																	<label for="txt_2" class="col-sm-4 control-label bolder">Nro. Factura:</label>
+																    <div class="col-sm-8">
+																 		<input type="text" class="form-control" name="txt_2" placeholder="Nro. Factura " ng-model="nroDocumento.txt_2" ng-keypress="soloNumeros($event)" required> 
+																    </div>
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group" ng-class="{ 'has-error' : formNroDocumento.txt_3.$invalid && !formNroDocumento.txt_3.$pristine }">
+																	<label for="txt_3" class="col-sm-4 control-label bolder">Nro. Factura Lote:</label>
+																    <div class="col-sm-8">
+																 		<input type="text" class="form-control" name="txt_3" placeholder="Nro. Factura Lote " ng-model="nroDocumento.txt_3" ng-keypress="soloNumeros($event)" required> 
+																    </div>
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group" ng-class="{ 'has-error' : formNroDocumento.txt_4.$invalid && !formNroDocumento.txt_4.$pristine }">
+																	<label for="txt_4" class="col-sm-4 control-label bolder">Nro. Nota Débito:</label>
+																    <div class="col-sm-8">
+																 		<input type="text" class="form-control" name="txt_4" placeholder="Nro. Nota Débito " ng-model="nroDocumento.txt_4" ng-keypress="soloNumeros($event)" required>
+																    </div>
+																</div>	
+															</div>
+															<div class="col-md-6">
+																<div class="form-group" ng-class="{ 'has-error' : formNroDocumento.txt_5.$invalid && !formNroDocumento.txt_5.$pristine }">
+																	<label for="txt_5" class="col-sm-4 control-label bolder">Nro. Nota Débito Lote:</label>
+																    <div class="col-sm-8">
+																 		<input type="text" class="form-control" name="txt_5" placeholder="Nro. Nota Débito Lote " ng-model="nroDocumento.txt_5" ng-keypress="soloNumeros($event)" required>
+																    </div>
+																</div>	
+															</div>
+															<div class="col-md-6">
+																<div class="form-group" ng-class="{ 'has-error' : formNroDocumento.txt_6.$invalid && !formNroDocumento.txt_6.$pristine }">
+																	<label for="txt_6" class="col-sm-4 control-label bolder">Nro. Nota Crédito:</label>
+																    <div class="col-sm-8">
+																 		<input type="text" class="form-control" name="txt_6" placeholder="Nro. Nota Crédito " ng-model="nroDocumento.txt_6" ng-keypress="soloNumeros($event)" required>
+																    </div>
+																</div>	
+															</div>
+															<div class="col-md-6">
+																<div class="form-group" ng-class="{ 'has-error' : formNroDocumento.txt_7.$invalid && !formNroDocumento.txt_7.$pristine }">
+																	<label for="txt_7" class="col-sm-4 control-label bolder">Nro. Nota Crédito Lote:</label>
+																    <div class="col-sm-8">
+																 		<input type="text" class="form-control" name="txt_7" placeholder="Nro. Nota Crédito Lote " ng-model="nroDocumento.txt_7" ng-keypress="soloNumeros($event)" required> 
+																    </div>
+																</div>	
+															</div>
+															<div class="col-md-6">
+																<div class="form-group" ng-class="{ 'has-error' : formNroDocumento.txt_8.$invalid && !formNroDocumento.txt_8.$pristine }">
+																	<label for="txt_8" class="col-sm-4 control-label bolder">Compr. de Retención:</label>
+																    <div class="col-sm-8">
+																 		<input type="text" class="form-control" name="txt_8" placeholder="Compr. de Retención " ng-model="nroDocumento.txt_8" ng-keypress="soloNumeros($event)" required> 
+																    </div>
+																</div>	
+															</div>
+															<div class="col-md-6">
+																<div class="form-group" ng-class="{ 'has-error' : formNroDocumento.txt_9.$invalid && !formNroDocumento.txt_9.$pristine }">
+																	<label for="txt_9" class="col-sm-4 control-label bolder">Compr. de Retención Lote:</label>
+																    <div class="col-sm-8">
+																 		<input type="text" class="form-control" name="txt_9" placeholder="Compr. de Retención Lote " ng-model="nroDocumento.txt_9" ng-keypress="soloNumeros($event)" required>
+																    </div>
+																</div>	
+															</div>
+															<div class="col-md-6">
+																<div class="form-group" ng-class="{ 'has-error' : formNroDocumento.txt_10.$invalid && !formNroDocumento.txt_10.$pristine }">
+																	<label for="txt_10" class="col-sm-4 control-label bolder">Guía de Remisión:</label>
+																    <div class="col-sm-8">
+																 		<input type="text" class="form-control" name="txt_10" placeholder="Guía de Remisión " ng-model="nroDocumento.txt_10" ng-keypress="soloNumeros($event)" required> 
+																    </div>
+																</div>	
+															</div>
+															<div class="col-md-6">
+																<div class="form-group" ng-class="{ 'has-error' : formNroDocumento.txt_11.$invalid && !formNroDocumento.txt_11.$pristine }">
+																	<label for="txt_11" class="col-sm-4 control-label bolder">Guía de Remisión Lote:</label>
+																    <div class="col-sm-8">
+																 		<input type="text" class="form-control" name="txt_11" placeholder="Guía de Remisión Lote " ng-model="nroDocumento.txt_11" ng-keypress="soloNumeros($event)" required> 
+																    </div>
+																</div>	
+															</div>
+															<div class="form-group">
+																<div class="col-sm-12 center">
+		                                                            <div class="btn-group">
+		                                                                <button type="button" class="btn btn-md btn-primary" ng-click="principio()" name="btn_3"> << </button>
+		                                                                <button type="button" class="btn btn-md btn-primary" ng-click="atras()" name="btn_4"> < </button>
+		                                                                <button type="submit" class="btn btn-md btn-primary" name="btn_1" ng-disabled="formNroDocumento.$invalid"> {{buttonText}} </button>
+		                                                                <button type="button" class="btn btn-md btn-primary " name="btn_2" ng-click="ventanaBusqueda()"> Buscar </button>
+		                                                                <button type="button" class="btn btn-md btn-primary" ng-click="adelante()" name="btn_5"> > </button>
+		                                                                <button type="button" class="btn btn-md btn-primary" ng-click="final()" name = "btn_6"> >> </button>
+		                                                            </div>
+		                                                        </div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+							    	</div>
+							    </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" id="modal-table" role="dialog" aria-labelledby="myLargeModalLabel" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header no-padding">
+                                <div class="table-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        <span class="white">&times;</span>
+                                    </button>
+                                    Empresas / Sucursales                                    
+                                </div>
+                            </div>
+                            <div class="modal-body no-padding">
+                                <div class="row">
+                                    <div class="col-xs-12"> 
+                                        <div>
+                                            <table id="documento-table" class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <td class="hidden">Id</td>
+                                                        <th class="center">Punto Emisión</th>
+                                                        <th class="center">Establecimineot</th>
+                                                        <th class="center">Empresa</th>
+                                                        <th class="center">Ciudad</th>
+                                                        <th class="center">Ambiente</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>          
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+			</div>
+		</div>            
+    </div><!-- /.main-content -->
+    <div class="footer">
+        <div class="footer-inner">
+            <div class="footer-content">
+                <span class="bigger-120">
+                    <span class="blue bolder">Vadow &copy; 2017-2018
+                </span>
+                &nbsp; &nbsp;
+                <span class="bigger-120">
+                    <span class="bolder">
+                    Version 1.0
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->
