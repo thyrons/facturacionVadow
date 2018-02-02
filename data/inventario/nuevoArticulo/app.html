@@ -135,29 +135,29 @@
                                                     <div class="form-group" ng-class="{ 'has-error' : formNuevoArticulo.txt_1.$invalid && !formNuevoArticulo.txt_1.$pristine }">
                                                         <label for="txt_1" class="col-sm-3 col-xs-12 control-label bolder">Código:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="txt_1" placeholder="Código" ng-model="nroDocumento.txt_1" required> 
-                                                            <input type="hidden" name="txt_id" ng-model="nroDocumento.txt_id"> 
-                                                            <input type="hidden" name="txt_verificador" ng-model="nroDocumento.txt_verificador"> 
+                                                            <input type="text" class="form-control" name="txt_1" placeholder="Código" ng-model="nuevoArticulo.txt_1" required> 
+                                                            <input type="hidden" name="txt_id" ng-model="nuevoArticulo.txt_id"> 
+                                                            <input type="hidden" name="txt_verificador" ng-model="nuevoArticulo.txt_verificador"> 
                                                             <p style="margin-bottom: -5px;" ng-show="formNuevoArticulo.txt_1.$invalid && !formNuevoArticulo.txt_1.$pristine" class="help-block">Este campo es Obligatorio.</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="txt_2" class="col-sm-3 col-xs-12 control-label bolder">Código de Barras:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="txt_2" ng-model="nroDocumento.txt_2" placeholder="Código de Barras">
+                                                            <input type="text" class="form-control" name="txt_2" ng-model="nuevoArticulo.txt_2" placeholder="Código de Barras">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group" ng-class="{ 'has-error' : formNuevoArticulo.txt_1.$invalid && !formNuevoArticulo.txt_1.$pristine }">
-                                                        <label for="txt_1" class="col-sm-3 col-xs-12 control-label bolder">Nombre Producto:</label>
+                                                    <div class="form-group" ng-class="{ 'has-error' : formNuevoArticulo.txt_3.$invalid && !formNuevoArticulo.txt_3.$pristine }">
+                                                        <label for="txt_3" class="col-sm-3 col-xs-12 control-label bolder">Nombre Producto:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="txt_1" placeholder="Nombre Producto" ng-model="nroDocumento.txt_1" required>                                                             
-                                                            <p style="margin-bottom: -5px;" ng-show="formNuevoArticulo.txt_1.$invalid && !formNuevoArticulo.txt_1.$pristine" class="help-block">Este campo es Obligatorio.</p>
+                                                            <input type="text" class="form-control" name="txt_3" placeholder="Nombre Producto" ng-model="nuevoArticulo.txt_3" required>                                                             
+                                                            <p style="margin-bottom: -5px;" ng-show="formNuevoArticulo.txt_3.$invalid && !formNuevoArticulo.txt_3.$pristine" class="help-block">Este campo es Obligatorio.</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="txt_9" class="col-sm-3 col-xs-12 control-label bolder">Descripción:</label>
+                                                        <label for="txt_4" class="col-sm-3 col-xs-12 control-label bolder">Descripción:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="txt_9" ng-model="nroDocumento.txt_9" placeholder="Descripción del Artículo">
+                                                            <input type="text" class="form-control" name="txt_4" ng-model="nuevoArticulo.txt_4" placeholder="Descripción del Artículo">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -168,18 +168,20 @@
                                                             </select>                                                      
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="txt_9" class="col-sm-3 col-xs-12 control-label bolder">Descuento %:</label>
+                                                    <div class="form-group" ng-class="{ 'has-error' : formNuevoArticulo.txt_5.$invalid && !formNuevoArticulo.txt_5.$pristine }">
+                                                        <label for="txt_5" class="col-sm-3 col-xs-12 control-label bolder">Descuento %:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="txt_9" ng-model="nroDocumento.txt_9" placeholder="Descuento del Artículo" required="">
+                                                            <input type="text" class="form-control" name="txt_5" placeholder="Descuento %" ng-model="nuevoArticulo.txt_5" required>                                                             
+                                                            <p style="margin-bottom: -5px;" ng-show="formNuevoArticulo.txt_5.$invalid && !formNuevoArticulo.txt_5.$pristine" class="help-block">Este campo es Obligatorio.</p>
                                                         </div>
-                                                    </div>  
-                                                    <div class="form-group">
-                                                        <label for="txt_9" class="col-sm-3 col-xs-12 control-label bolder">Ganancia %:</label>
+                                                    </div>
+                                                     <div class="form-group" ng-class="{ 'has-error' : formNuevoArticulo.txt_6.$invalid && !formNuevoArticulo.txt_6.$pristine }">
+                                                        <label for="txt_6" class="col-sm-3 col-xs-12 control-label bolder">Ganancia %:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="txt_9" ng-model="nroDocumento.txt_9" placeholder="Ganancia del Artículo" required="">
+                                                            <input type="text" class="form-control" name="txt_6" placeholder="Ganancia" ng-model="nuevoArticulo.txt_6" required>                                                             
+                                                            <p style="margin-bottom: -5px;" ng-show="formNuevoArticulo.txt_6.$invalid && !formNuevoArticulo.txt_6.$pristine" class="help-block">Este campo es Obligatorio.</p>
                                                         </div>
-                                                    </div>                                                   
+                                                    </div>                                                 
                                                     <div class="form-group">
                                                         <label for="tipo_iva" class="col-sm-3 col-xs-12 control-label bolder">Iva:</label>
                                                         <div class="col-sm-9">                                                            
@@ -203,51 +205,51 @@
                                                 </div>
                                                 <div id="adicionales" class="tab-pane">
                                                     <div class="form-group">
-                                                        <label for="txt_9" class="col-sm-3 col-xs-12 control-label bolder">Marca:</label>
+                                                        <label for="txt_7" class="col-sm-3 col-xs-12 control-label bolder">Marca:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="txt_9" ng-model="nroDocumento.txt_9" placeholder="Stock del Artículo">
+                                                            <input type="text" class="form-control" name="txt_7" ng-model="nuevoArticulo.txt_7" placeholder="Marca">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="txt_9" class="col-sm-3 col-xs-12 control-label bolder">Modelo:</label>
+                                                        <label for="txt_8" class="col-sm-3 col-xs-12 control-label bolder">Modelo:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="txt_9" ng-model="nroDocumento.txt_9" placeholder="Stock del Artículo">
+                                                            <input type="text" class="form-control" name="txt_8" ng-model="nuevoArticulo.txt_8" placeholder="Modelo">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="txt_9" class="col-sm-3 col-xs-12 control-label bolder">1.- Atributo:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="txt_9" ng-model="nroDocumento.txt_9" placeholder="Stock del Artículo">
+                                                            <input type="text" class="form-control" name="txt_9" ng-model="nuevoArticulo.txt_9" placeholder="Atributo">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="txt_9" class="col-sm-3 col-xs-12 control-label bolder">Descripción:</label>
+                                                        <label for="txt_10" class="col-sm-3 col-xs-12 control-label bolder">Descripción:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="txt_9" ng-model="nroDocumento.txt_9" placeholder="Stock del Artículo">
+                                                            <input type="text" class="form-control" name="txt_10" ng-model="nuevoArticulo.txt_10" placeholder="Descripcion">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="txt_9" class="col-sm-3 col-xs-12 control-label bolder">2.- Atributo::</label>
+                                                        <label for="txt_11" class="col-sm-3 col-xs-12 control-label bolder">2.- Atributo:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="txt_9" ng-model="nroDocumento.txt_9" placeholder="Stock del Artículo">
+                                                            <input type="text" class="form-control" name="txt_11" ng-model="nuevoArticulo.txt_11" placeholder="Atributo">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="txt_9" class="col-sm-3 col-xs-12 control-label bolder">Descripción:</label>
+                                                        <label for="txt_12" class="col-sm-3 col-xs-12 control-label bolder">Descripción:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="txt_9" ng-model="nroDocumento.txt_9" placeholder="Stock del Artículo">
+                                                            <input type="text" class="form-control" name="txt_12" ng-model="nuevoArticulo.txt_12" placeholder="Descripción">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="txt_9" class="col-sm-3 col-xs-12 control-label bolder">3.- Atributo::</label>
+                                                        <label for="txt_13" class="col-sm-3 col-xs-12 control-label bolder">3.- Atributo::</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="txt_9" ng-model="nroDocumento.txt_9" placeholder="Stock del Artículo">
+                                                            <input type="text" class="form-control" name="txt_13" ng-model="nuevoArticulo.txt_13" placeholder="Atributo">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="txt_9" class="col-sm-3 col-xs-12 control-label bolder">Descripción:</label>
+                                                        <label for="txt_14" class="col-sm-3 col-xs-12 control-label bolder">Descripción:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="txt_9" ng-model="nroDocumento.txt_9" placeholder="Stock del Artículo">
+                                                            <input type="text" class="form-control" name="txt_14" ng-model="nuevoArticulo.txt_14" placeholder="Descripción">
                                                         </div>
                                                     </div>   
                                                     <div class="form-group">
